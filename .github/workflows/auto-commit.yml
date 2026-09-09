@@ -1,0 +1,29 @@
+name: Auto Commit
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # هر روز ساعت ۹ صبح (به وقت UTC) اجرا می‌شود
+  workflow_dispatch: # امکان اجرای دستی هم فراهم باشد
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Git identity
+      run: |
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "actions@github.com"
+
+    - name: Make a change
+      run: |
+        # یک متن یا تاریخ جدید به فایل log.txt اضافه می‌کند
+        echo "Activity update on $(date)" >> log.txt
+
+    - name: Commit and push changes
+      run: |
+        git add log.txt
+        git commit -m "Auto-update contribution graph: $(date +'%Y-%m-%d')"
+        git push
