@@ -2,8 +2,8 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 9 * * *'          # هر روز ساعت ۹ صبح به وقت UTC
-  workflow_dispatch:              # دکمه اجرای دستی
+    - cron: '30 11 * * *'   # هر روز ساعت ۳ بعدازظهر به وقت تهران
+  workflow_dispatch:             # دکمه اجرای دستی
 
 jobs:
   build:
